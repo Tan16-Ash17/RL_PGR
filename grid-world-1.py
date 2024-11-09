@@ -193,3 +193,32 @@ if __name__ == '__main__':
     figure_3_2_linear_system()
     figure_3_2()
     figure_3_5()git
+
+
+
+#CHECK IF THIS IS RIGHT NOT SURE (also last part i am not sure what to type can we just 
+#randomise it and keep that as the policy[I,j] values or should we just do the best course of action ?)
+def get_epsilon_greedy_policy(value, epsilon): 
+    epsilon=0.1
+    policy = np.zeros((WORLD_SIZE,WORLD_SIZE,))
+    # Lets keep the policy value as zero at start like both e and the v is 0
+    for i in range(WORLD_SIZE):
+        
+        #lets specify  the states POS A and B we proceed 
+        # we are trying to avoid the terminal state cause we cannot take anymore action 
+        # cause like the transitition is done 
+        for j in range(WORLD_SIZE):
+            state=[i,j]
+            if state == A_POS or state ==B_POS:
+                continue
+            
+            value_each_action=[] # at first its empty 
+            # then we find the vakue of eahc state by the state value and its reward for each state 
+            for h in ACTIONS:
+                
+                next_state,_ =step(state,action)
+                v_next=[next_state[0],next_state[1]]
+                value_each_action.append(v_next)
+            
+            # the main of greedy selection is to choose the best course of action
+        
